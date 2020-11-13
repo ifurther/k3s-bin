@@ -1,0 +1,14 @@
+[k3s-api]
+title=k3s api
+description=k3s api port
+ports=6443/tcp
+
+[k3s-flannel]
+title=k3s flannel
+description=k3s flannel vxlan needed
+ports=8472/udp
+
+[k3s-metrics]
+title=k3s metrics
+description=k3s metrics server port
+ports=10250/tcp
