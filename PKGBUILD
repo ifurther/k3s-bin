@@ -7,6 +7,7 @@ url="https://k3s.io"
 license=('Apache')
 arch=('x86_64' 'armv7h' 'aarch64')
 conflicts=('k3s-git')
+install=$pkgname.install
 
 source=(
   "k3s.service"

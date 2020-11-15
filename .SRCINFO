@@ -3,6 +3,7 @@ pkgbase = k3s-bin
 	pkgver = 1.19.3+k3s1
 	pkgrel = 1
 	url = https://k3s.io
+	install = k3s-bin.install
 	arch = x86_64
 	arch = armv7h
 	arch = aarch64
