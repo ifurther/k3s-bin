@@ -8,7 +8,13 @@ license=('Apache')
 arch=('x86_64' 'armv7h' 'aarch64')
 conflicts=('k3s-git')
 install=$pkgname.install
-
+depends=(
+  "go"
+)
+optdepends=(
+  "wireguard-go-git"
+  "wirequard-tools"
+)
 source=(
   "k3s.service"
   "k3s.service.env"
@@ -55,5 +61,5 @@ package() {
   install -m 400 $srcdir/k3s-agent.service.env $pkgdir/etc/systemd/system/k3s-agent.service.env
 }
 
-backup=("etc/systemd/system/k3s.service.env")
-backup=("etc/systemd/system/k3s-agent.service.env")
+backup=("etc/systemd/system/k3s.service.env"
+        "etc/systemd/system/k3s-agent.service.env")
