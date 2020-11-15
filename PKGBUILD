@@ -1,5 +1,6 @@
 # Maintainer: duxet <duxetlg@gmail.com>
-pkgname=k3s-bin
+pkgbase=k3s
+pkgname=("$pkgbase-server" "$pkgbase-agent")
 pkgver=1.19.3+k3s1
 pkgrel=1
 pkgdesc="Lightweight Kubernetes"
@@ -7,7 +8,7 @@ url="https://k3s.io"
 license=('Apache')
 arch=('x86_64' 'armv7h' 'aarch64')
 conflicts=('k3s-git')
-install=$pkgname.install
+install=k3s.install
 makedepends=(
   "go"
 )
@@ -47,7 +48,7 @@ sha256sums_aarch64=('92ed9560b700bcd79b49e1f5229a6b6b6afce7facc676abf936bd32550d
 
 
 
-package() {
+package_k3s-server() {
   install -Dm 755 $srcdir/k3s-${pkgver}-${CARCH} $pkgdir/usr/bin/k3s
 
   install -dm 755 $pkgdir/usr/lib/systemd/system
@@ -57,9 +58,23 @@ package() {
   install -m 644 $srcdir/k3s.service $pkgdir/usr/lib/systemd/system/k3s.service
   install -m 400 $srcdir/k3s.service.env $pkgdir/etc/systemd/system/k3s.service.env
   install -m 644 $srcdir/ufw-k3s $pkgdir/etc/ufw/applications.d/ufw-k3s
-  install -m 644 $srcdir/k3s-agent.service $pkgdir/usr/lib/systemd/system/k3s-agent.service
-  install -m 400 $srcdir/k3s-agent.service.env $pkgdir/etc/systemd/system/k3s-agent.service.env
+  
+  backup=("etc/systemd/system/k3s.service.env")
+
 }
 
-backup=("etc/systemd/system/k3s.service.env"
-        "etc/systemd/system/k3s-agent.service.env")
+package_k3s-agent() {
+  install -Dm 755 $srcdir/k3s-${pkgver}-${CARCH} $pkgdir/usr/bin/k3s
+
+  install -dm 755 $pkgdir/usr/lib/systemd/system
+  install -dm 755 $pkgdir/etc/systemd/system
+  install -dm 755 $pkgdir/etc/ufw/applications.d
+
+  install -m 644 $srcdir/k3s-agent.service $pkgdir/usr/lib/systemd/system/k3s-agent.service
+  install -m 400 $srcdir/k3s-agent.service.env $pkgdir/etc/systemd/system/k3s-agent.service.env
+  install -m 644 $srcdir/ufw-k3s $pkgdir/etc/ufw/applications.d/ufw-k3s
+  
+  backup=("etc/systemd/system/k3s-agent.service.env")
+
+}
+

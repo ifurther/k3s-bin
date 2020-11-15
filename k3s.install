@@ -1,0 +1,8 @@
+post_remove() {
+  umount `cat /proc/self/mounts | awk '{print $2}' | grep '^/var/lib/rancher/k3s'`
+  rm -rf  /etc/rancher/k3s
+  rm -rf  /run/k3s
+  rm -rf  /run/flannel
+  rm -rf  /var/lib/kubelet
+  rm -rf  /var/lib/rancher/k3s
+}

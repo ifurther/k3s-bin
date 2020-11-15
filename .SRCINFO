@@ -1,9 +1,9 @@
-pkgbase = k3s-bin
+pkgbase = k3s
 	pkgdesc = Lightweight Kubernetes
 	pkgver = 1.19.3+k3s1
 	pkgrel = 1
 	url = https://k3s.io
-	install = k3s-bin.install
+	install = k3s.install
 	arch = x86_64
 	arch = armv7h
 	arch = aarch64
@@ -12,8 +12,6 @@ pkgbase = k3s-bin
 	optdepends = wireguard-go-git
 	optdepends = wirequard-tools
 	conflicts = k3s-git
-	backup = etc/systemd/system/k3s.service.env
-	backup = etc/systemd/system/k3s-agent.service.env
 	source = k3s.service
 	source = k3s.service.env
 	source = k3s-agent.service
@@ -31,5 +29,9 @@ pkgbase = k3s-bin
 	source_aarch64 = k3s-1.19.3+k3s1-aarch64::https://github.com/rancher/k3s/releases/download/v1.19.3+k3s1/k3s-arm64
 	sha256sums_aarch64 = 92ed9560b700bcd79b49e1f5229a6b6b6afce7facc676abf936bd32550dfa315
 
-pkgname = k3s-bin
+pkgname = k3s-server
+	backup = etc/systemd/system/k3s.service.env
+
+pkgname = k3s-agent
+	backup = etc/systemd/system/k3s-agent.service.env
 
