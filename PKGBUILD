@@ -1,6 +1,10 @@
 # Maintainer: duxet <duxetlg@gmail.com>
+<<<<<<< HEAD
 pkgbase=k3s
 pkgname=("$pkgbase-server" "$pkgbase-agent")
+=======
+pkgname=k3s-bin
+>>>>>>> upstream/master
 pkgver=1.20.4+k3s1
 pkgrel=1
 pkgdesc="Lightweight Kubernetes"
